@@ -20,7 +20,7 @@ public class MeasurementServiceImpl implements MeasurementService {
 	//TODO: get the value from the params
 	private static int MAX_EXECUTORS = 4;
 
-	//TODO: Define max waiting time with bussines
+	//TODO: Define max waiting time with business
 	private final static int MAX_WAITING_TIME = 10;
 
 	private static final ExecutorService mExecutor = Executors.newFixedThreadPool(MAX_EXECUTORS);
@@ -40,7 +40,7 @@ public class MeasurementServiceImpl implements MeasurementService {
 		for (Integer aux : devicesId) {
 			mExecutor.execute(new MeasureReader(aux , now));
 		}
-		// the executor won t accept more new threads
+		// the executor won't accept more new threads
 		// and will finish ALL existing in queue
 		mExecutor.shutdown();
 
@@ -49,8 +49,8 @@ public class MeasurementServiceImpl implements MeasurementService {
 	}
 
 	/**
-	 * MeasureReader simply calls doMeasurement and when ready storeMeasurement
-	 * in a non bloking way
+	 * MeasureReader simply calls doMeasurement and when it is ready it stores a Measurement
+	 * in a non blocking way
 	 *
 	 * @throws InterruptedException if the device is not measured
 	 * @author Víctor Suárez
@@ -69,7 +69,7 @@ public class MeasurementServiceImpl implements MeasurementService {
 				deviceDAO.save(deviceId , devMeasurement.obtainMeasurement(deviceId) , mDate);
 			} catch (InterruptedException e) {
 				//TODO:
-				//@somebody ask to remove the device from the next measurement
+				//@somebody asked to remove the device from the next measurement, need to ask for business logic to be defined
 			}
 		}
 	}

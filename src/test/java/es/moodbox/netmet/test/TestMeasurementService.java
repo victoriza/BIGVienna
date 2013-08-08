@@ -9,6 +9,7 @@ import junit.framework.TestCase;
 
 public class TestMeasurementService extends TestCase{
 
+	//TODO: add MockIt to make a more realistic test
 	public void testMeasurement()throws InterruptedException{
 		List<Integer> devicesId = new ArrayList<Integer>();
 		for (int i = 0; i < 1000; i++) {
